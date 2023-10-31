@@ -9,6 +9,13 @@ paths:
   /greet:
     get:
       summary: Get a greeting message
+      operationId: greet
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: Greeting message returned successfully.
@@ -20,3 +27,22 @@ paths:
                   message:
                     type: string
                     example: "Hello, World!"
+
+
+paths:
+  "/greeting":
+    get:
+      operationId: greeting
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Default response
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Greeting"                    
