@@ -1,23 +1,22 @@
+---
 openapi: 3.0.0
 info:
   title: Greeting Service
   version: 1.0.0
   description: A simple service to greet users.
-
-
 paths:
   /greet:
     get:
       summary: Get a greeting message
       operationId: greet
       parameters:
-      - name: name
-        in: query
-        required: false
-        schema:
-          type: string
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: Greeting message returned successfully.
           content:
             application/json:
@@ -26,23 +25,4 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: "Hello, World!"
-
-
-paths:
-  "/greeting":
-    get:
-      operationId: greeting
-      parameters:
-      - name: name
-        in: query
-        required: false
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Default response
-          content:
-            "*/*":
-              schema:
-                "$ref": "#/components/schemas/Greeting"                    
+                    example: Hello, World!
