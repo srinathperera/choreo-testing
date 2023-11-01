@@ -1,0 +1,88 @@
+openapi: 3.0.1
+info:
+  title: Simple Go Service
+  description: A simple Go service with two endpoints.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Development server
+paths:
+  /get:
+    get:
+      summary: Get a greeting message
+      description: Returns a greeting message based on the provided name.
+      parameters:
+        - name: name
+          in: query
+          description: Name to be included in the greeting message.
+          required: false
+          schema:
+            type: string
+            example: John Doe
+      responses:
+        '200':
+          description: Successful response with the greeting message.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Hello, John Doe!"
+
+  /updateprofile:
+    post:
+      summary: Update a user's profile
+      description: Updates the profile with the provided information.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+      responses:
+        '200':
+          description: Successful profile update.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Profile updated: Name - John Doe, Age - 30, Country - USA"
+
+components:
+  schemas:
+    Profile:
+      type: object
+      properties:
+        name:
+          type: string
+          example: John Doe
+        age:
+          type: integer
+          format: int32
+          example: 30
+        country:
+          type: string
+          example: USA
+
+
+
+
+
+          description: Default response
+          content:
+            "*/*":
+              schema:
+                "$ref": "#/components/schemas/Greeting"
+components:
+  schemas:
+    Greeting:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        content:
+          type: string
+
