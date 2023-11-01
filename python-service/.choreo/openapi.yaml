@@ -15,6 +15,7 @@ paths:
             type: string
       responses:
         "200":
+          description: Greeting message returned successfully.
           content:
             application/json:
               schema:
