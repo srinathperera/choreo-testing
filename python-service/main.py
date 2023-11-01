@@ -3,7 +3,8 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 @app.route('/greet', methods=['GET'])
-def greet(name):
+def greet():
+    name = request.args.get('name', 'World')  # Default to 'World' if no name is provided
     return jsonify(message="Hello, World! " + name)
 
 @app.route('/hello', methods=['POST'])
