@@ -4,7 +4,9 @@ app = Flask(__name__)
 
 @app.route('/greet', methods=['GET'])
 def greet():
+    print("Request received")
     name = request.args.get('name', 'World')  # Default to 'World' if no name is provided
+    print("Request received", name)
     return jsonify(message="Hello, World! " + name)
 
 @app.route('/hello', methods=['POST'])
