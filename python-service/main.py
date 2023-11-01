@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -7,7 +7,8 @@ def greet(name):
     return jsonify(message="Hello, World! " + name)
 
 @app.route('/hello', methods=['POST'])
-def hello(name):
+def hello():
+    name = request.args.get('name', 'World')  # Default to 'World' if no name is provided
     user = {
         "username": name,
         "email": "john@example.com",
