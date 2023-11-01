@@ -5,6 +5,21 @@ info:
   version: 1.0.0
   description: A simple service to greet users.
 paths:
+  /hello:
+    post:
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
   /greet:
     get:
       summary: Get a greeting message
