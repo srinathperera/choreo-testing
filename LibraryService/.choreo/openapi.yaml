@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  title: Library Management Service
+  version: 1.0.0
+  description: API for managing book checkouts and check-ins in a library.
+
+paths:
+  /checkout:
+    post:
+      summary: Checkout a book
+      description: Endpoint to checkout a book from the library.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                book_id:
+                  type: integer
+                  description: The ID of the book to checkout.
+                  example: 1
+      responses:
+        '200':
+          description: Book checked out successfully with details.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Book 1 checked out successfully
+                  book_details:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        example: To Kill a Mockingbird
+                      author:
+                        type: string
+                        example: Harper Lee
+        '400':
+          description: Invalid request or book not available.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Book is not available
+
+  /checkin:
+    post:
+      summary: Checkin a book
+      description: Endpoint to checkin a book to the library.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                book_id:
+                  type: integer
+                  description: The ID of the book to checkin.
+                  example: 1
+      responses:
+        '200':
+          description: Book checked in successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Book 1 checked in successfully
+        '400':
+          description: Invalid request or book already available.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Book is already available
