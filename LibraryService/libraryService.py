@@ -12,6 +12,8 @@ books = {
 @app.route('/checkout', methods=['POST'])
 def checkout_book():
     book_id = request.json.get('book_id')
+    print(book_id + "CheckOut\n")
+
     if book_id and book_id in books:
         if books[book_id]['available']:
             books[book_id]['available'] = False
@@ -27,6 +29,7 @@ def checkout_book():
 @app.route('/checkin', methods=['POST'])
 def checkin_book():
     book_id = request.json.get('book_id')
+    print(book_id + "Checkin\n")
     if book_id and book_id in books:
         if not books[book_id]['available']:
             books[book_id]['available'] = True
